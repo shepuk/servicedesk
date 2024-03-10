@@ -1,0 +1,71 @@
+//remove pesky jetstream input styling!
+input {
+    all: unset;
+}
+[type="radio"] {
+    all: unset;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Order */
+@layer reset, primevue;
+
+/* Reset CSS */
+@layer reset {
+    button,
+    input {
+        /* CSS to Reset */
+    }
+}
+
+
+@import "./tabs-component.scss";
+@import "./inputs.scss";
+
+@font-face {
+    font-family: manrope;
+    src: url(../fonts/manrope.ttf);
+}
+@font-face {
+    font-family: "sugarmagic";
+    src: url(../fonts/sugarmagic.otf) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+[x-cloak] {
+    display: none;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+    font-family: "manrope";
+    color: #363636;
+    font-size: 14px;
+    
+}
+
+.logo-font {
+    font-family: "sugarmagic";
+}
+
+.sugar-font {
+    font-family: "sugarmagic";
+    font-size: 36px;
+}
+
+//------------------------------
+
+.ui-state-highlight {
+    height: 1.5em;
+    line-height: 1.2em;
+}

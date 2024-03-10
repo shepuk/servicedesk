@@ -3,7 +3,13 @@
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Application;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\TicketsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TicketBoardsController;
+use App\Http\Controllers\TicketOrdersController;
+use App\Http\Controllers\TicketColumnsController;
+use App\Http\Controllers\TicketColumnsOrdersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +39,15 @@ Route::middleware([
     // Route::get('/dashboard', function () {
     //     return Inertia::render('Dashboard');
     // })->name('dashboard');
+    Route::resource('user', UserController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('ticketboards', TicketBoardsController::class);
+    Route::resource('ticketcolumns', TicketColumnsController::class);
+    Route::resource('tickets', TicketsController::class);
+    Route::resource('ticketorders', TicketOrdersController::class);
+    Route::resource('ticketcolumnsorders', TicketColumnsOrdersController::class);
+
+
 });
 
 

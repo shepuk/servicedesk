@@ -1,0 +1,57 @@
+input,
+textarea {
+    padding: 10px 10px !important;
+    outline: none !important;
+    margin-bottom: 16px;
+    border: 1px solid #8c8c8c !important;
+    transition: all 0.3s;
+
+    &:focus:not([type="radio"]) {
+        -webkit-box-shadow: 0px 4px 0px 0px black !important;
+        -moz-box-shadow: 0px 4px 0px 0px black !important;
+        box-shadow: 0px 4px 0px 0px black !important;
+    }
+}
+
+[type="radio"] {
+    display: block;
+    height: 12px;
+    width: 12px;
+}
+
+[type="radio"] {
+    border: 1px solid #b0b0b0;
+    border-radius: 50%;
+    &:checked {
+        outline: 1px solid black!important;
+    }
+}
+
+.new-ticket-radio {
+    &:focus {
+        outline: none !important;
+        -webkit-box-shadow: none !important;
+        -moz-box-shadow: none !important;
+        box-shadow: none !important;
+    }
+}
+
+#low {
+    color: #0ea5e9;
+    accent-color: #0ea5e9;
+}
+
+#normal {
+    color: #10b981;
+    accent-color: #10b981;
+}
+
+#high {
+    color: #eab308;
+    accent-color: #eab308;
+}
+
+#critical {
+    color: #ef4444;
+    accent-color: #ef4444;
+}
