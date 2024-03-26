@@ -29,4 +29,10 @@ class UserHelpers
         return Tickets::where('team_id', $team)->get();
     }
 
+    public static function getUserCompanies(User $user)
+    {
+        //$team = $user->currentTeam->id;
+        //return User::where('team_id', $team)->get();
+    }
+
 }

@@ -4,6 +4,7 @@ import { router, useForm } from "@inertiajs/vue3";
 import { Sortable } from "sortablejs-vue3";
 import DialogModal from "../Components/DialogModal.vue";
 import TextInput from "./TextInput.vue";
+import InputText from "primevue/inputtext";
 import PrimaryButton from "../Components/PrimaryButton.vue";
 import SecondaryButton from "../Components/SecondaryButton.vue";
 import DangerButton from "../Components/DangerButton.vue";
@@ -20,7 +21,7 @@ const { tickets, column, allColumns, ticketOrder, teamUsers } = defineProps({
 });
 
 const newTicketForm = useForm({
-    title: "",
+    title: "My new ticket",
     description: "",
     column: column.id,
     assignee: "",
@@ -94,8 +95,7 @@ const saveTicket = () => {
 const deleteTicket = () => {
     closeModal();
     router.delete(route("tickets.destroy", currentlyEditingTicket), {
-        onSuccess: () => {
-        },
+        onSuccess: () => {},
     });
 };
 
@@ -173,19 +173,20 @@ const onEnd = (e) => {
 </style>
 
 <template>
+    <div class="group pb-20 hover:pb-10">
     <Sortable
         :list="tickets"
         item-key="id"
         tag="div"
         :options="options"
-        class="h-full my-2 pb-6"
+        class="h-full my-2 pb-20"
         @end="onEnd"
         :data-id="column.id"
     >
         <template #item="{ element, index }" :key="element.id">
             <div
                 @click="startViewingTicket(element)"
-                class="galleon-ticket cursor-pointer p-3 mt-4 w-full bg-white shadow-[0_3px_10px_rgb(0,0,0,0.08)] border border-stone-200"
+                class="galleon-ticket cursor-pointer p-3 mt-4 w-full bg-white shadow-[0_3px_10px_rgb(0,0,0,0.08)] border border-zinc-200"
                 :key="element.id"
                 :data-id="element.id"
             >
@@ -227,50 +228,133 @@ const onEnd = (e) => {
         </template>
     </Sortable>
     <button
-        class="w-full flex items-center justify-center gap-1 px-3 py-2 hover:bg-stone-100"
+        class="hidden group-hover:flex w-full items-center justify-center gap-1 px-3 py-2 border border-zinc-200 shadow-md bg-white hover:bg-zinc-100"
         @click="startCreatingTicket()"
     >
-        <PlusSquare class="w-4 h-4" color="#1E293B" />
         Create ticket
     </button>
+</div>
 
     <DialogModal :show="creatingTicket" @close="closeModal">
-        <template #title>
-            Create New Ticket <br />
-            <span class="text-sm text-gray-600">
-                Use the form below to enter new ticket information.
-            </span>
+        <template #header>
+            <div
+                class="w-full bg-emerald-500 text-white font-bold text-sm py-1 px-6"
+            >
+               {{ $page.props.auth.user.name }} -> new ticket
+            </div>
         </template>
+        <!-- <template #title> New Ticket <br /> </template> -->
 
         <template #content>
-            <div class="mt-4">
-                <textarea
-                    required
-                    ref="titleInput"
-                    v-model="newTicketForm.title"
-                    type="text"
-                    class="mt-1 block w-3/4 rounded-none focus:ring-0"
-                    placeholder="Ticket title"
-                    name="tickettitle"
-                />
+            <div class="flex flex-col gap-8">
+                <div class="flex flex-col gap-2">
+                    <!-- <label class="">Title</label> -->
+                    <input
+                        required
+                        ref="titleInput"
+                        v-model="newTicketForm.title"
+                        type="text"
+                        class="border p-2 text-3xl w-full rounded-none"
+                        placeholder=""
+                        value=""
+                        name="tickettitle"
+                    />
+                </div>
 
-                <textarea
-                    ref="descriptionInput"
-                    v-model="newTicketForm.description"
-                    type="text"
-                    class="mt-1 block w-3/4"
-                    placeholder="Ticket description"
-                >
-                </textarea>
+                <div class="flex flex-col">
+                    <!-- <p class="">Description</p> -->
+                    <p class="text-zinc-500 font-semibold mb-2">Description</p>
+                    <textarea
+                        ref="descriptionInput"
+                        v-model="newTicketForm.description"
+                        type="text"
+                        rows="3"
+                        class="border p-2 w-full rounded-none text-lg"
+                        placeholder="Enter a description for your ticket here"
+                    >
+                    </textarea>
+                </div>
 
-                <p class="font-medium mb-4 mt-8">Severity</p>
+                <div>
+                    <p class="text-zinc-500 font-semibold mb-2">Severity</p>
+                    <ul class="grid grid-cols-4 gap-4 w-full">
+                        <li class="relative">
+                            <input
+                                class="sr-only peer"
+                                type="radio"
+                                id="low"
+                                name="severity"
+                                value="low"
+                                ref="severityInput"
+                                v-model="newTicketForm.severity"
+                            />
+                            <label
+                                class="text-zinc-700 flex justify-center font-semibold px-4 py-2 bg-white border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-[#0ea5e9] peer-checked:text-white peer-checked:border-transparent"
+                                for="low"
+                                >Low</label
+                            >
+                        </li>
+
+                        <li class="relative">
+                            <input
+                                class="sr-only peer"
+                                checked
+                                type="radio"
+                                id="normal"
+                                name="severity"
+                                value="normal"
+                                ref="severityInput"
+                                v-model="newTicketForm.severity"
+                            />
+                            <label
+                                class="text-zinc-700 flex justify-center font-semibold px-4 py-2 bg-white border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-[#10b981] peer-checked:text-white peer-checked:border-transparent"
+                                for="normal"
+                                >Normal</label
+                            >
+                        </li>
+                        <li class="relative">
+                            <input
+                                class="sr-only peer"
+                                type="radio"
+                                id="high"
+                                name="severity"
+                                value="high"
+                                ref="severityInput"
+                                v-model="newTicketForm.severity"
+                            />
+                            <label
+                                class="text-zinc-700 flex justify-center font-semibold px-4 py-2 bg-white border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-[#eab308] peer-checked:text-white peer-checked:border-transparent"
+                                for="high"
+                                >High</label
+                            >
+                        </li>
+                        <li class="relative">
+                            <input
+                                class="sr-only peer"
+                                type="radio"
+                                id="critical"
+                                name="severity"
+                                value="critical"
+                                ref="severityInput"
+                                v-model="newTicketForm.severity"
+                            />
+                            <label
+                                class="text-zinc-700 flex justify-center font-semibold px-4 py-2 bg-white border border-gray-300 cursor-pointer focus:outline-none hover:bg-gray-50 peer-checked:bg-[#ef4444] peer-checked:text-white peer-checked:border-transparent"
+                                for="critical"
+                                >Critical</label
+                            >
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- <p class="font-medium mb-4 mt-8">Severity</p>
                 <div class="flex gap-8 w-3/4 mb-4">
                     <div class="flex gap-2">
                         <input
                             class="new-ticket-radio"
                             type="radio"
                             id="low"
-                            name="severity"
+                           
                             value="low"
                             ref="severityInput"
                             v-model="newTicketForm.severity"
@@ -283,7 +367,7 @@ const onEnd = (e) => {
                             class="new-ticket-radio normal-radio"
                             type="radio"
                             id="normal"
-                            name="severity"
+                           
                             value="normal"
                             ref="severityInput"
                             v-model="newTicketForm.severity"
@@ -295,7 +379,7 @@ const onEnd = (e) => {
                             class="new-ticket-radio"
                             type="radio"
                             id="high"
-                            name="severity"
+                            
                             value="high"
                             ref="severityInput"
                             v-model="newTicketForm.severity"
@@ -307,18 +391,22 @@ const onEnd = (e) => {
                             class="new-ticket-radio"
                             type="radio"
                             id="critical"
-                            name="severity"
+                            
                             value="critical"
                             ref="severityInput"
                             v-model="newTicketForm.severity"
                         />
                         <label for="critical" class="pt-[2px]">Critical</label>
                     </div>
-                </div>
+                </div> -->
 
-                <p class="font-medium mb-4">Column</p>
-                <div class="w-3/4 grid grid-cols-2 gap-4 mb-8">
-                    <select ref="columnInput" v-model="newTicketForm.column">
+                <div class="">
+                    <p class="text-zinc-500 font-semibold mb-2">Status</p>
+                    <select
+                        ref="columnInput"
+                        v-model="newTicketForm.column"
+                        class="w-full border py-3 px-2 focus-visible:outline-none"
+                    >
                         <option
                             v-for="column in allColumns"
                             :key="column.id"
@@ -330,9 +418,10 @@ const onEnd = (e) => {
                     </select>
                 </div>
 
-                <p class="font-medium mb-4">Assignee</p>
-                <div class="w-3/4 grid grid-cols-2 gap-4">
+                <div class="">
+                    <p class="text-zinc-500 font-semibold mb-2">Assignee</p>
                     <select
+                        class="w-full border py-3 px-2 focus-visible:outline-none"
                         ref="assigneeInput"
                         v-model="newTicketForm.assignee"
                     >
@@ -351,16 +440,18 @@ const onEnd = (e) => {
         </template>
 
         <template #footer>
-            <SecondaryButton @click="closeModal"> Cancel </SecondaryButton>
+            <div class="w-full flex flex-row justify-between">
+                <SecondaryButton @click="closeModal"> Close </SecondaryButton>
 
-            <PrimaryButton
-                class="ms-3"
-                :class="{ 'opacity-25': newTicketForm.processing }"
-                :disabled="newTicketForm.processing"
-                @click="createTicket"
-            >
-                Create Ticket
-            </PrimaryButton>
+                <PrimaryButton
+                    class=""
+                    :class="{ 'opacity-25': newTicketForm.processing }"
+                    :disabled="newTicketForm.processing"
+                    @click="createTicket"
+                >
+                    Create Ticket
+                </PrimaryButton>
+            </div>
         </template>
     </DialogModal>
 
@@ -381,20 +472,27 @@ const onEnd = (e) => {
         </template>
 
         <template #footer>
-            <DangerButton @click="deleteTicket(currentlyEditingTicket)">
-                Delete
-            </DangerButton>
-            <SecondaryButton @click="closeModal"> Edit </SecondaryButton>
-            <SecondaryButton @click="closeModal"> Close </SecondaryButton>
+            <div class="w-full flex flex-row justify-between">
+                <div>
+                    <DangerButton @click="deleteTicket(currentlyEditingTicket)">
+                        Delete Ticket
+                    </DangerButton>
+                </div>
+                <div>
+                    <SecondaryButton @click="closeModal">
+                        Close
+                    </SecondaryButton>
 
-            <PrimaryButton
-                class="ms-3"
-                :class="{ 'opacity-25': newTicketForm.processing }"
-                :disabled="newTicketForm.processing"
-                @click="createTicket"
-            >
-                Save
-            </PrimaryButton>
+                    <PrimaryButton
+                        class="ms-3"
+                        :class="{ 'opacity-25': newTicketForm.processing }"
+                        :disabled="newTicketForm.processing"
+                        @click="createTicket"
+                    >
+                        Save Ticket
+                    </PrimaryButton>
+                </div>
+            </div>
         </template>
     </DialogModal>
 </template>

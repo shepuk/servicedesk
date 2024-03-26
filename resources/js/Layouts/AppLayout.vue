@@ -7,6 +7,7 @@ import Dropdown from "@/Components/Dropdown.vue";
 import DropdownLink from "@/Components/DropdownLink.vue";
 import NavLink from "@/Components/NavLink.vue";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink.vue";
+import Tooltip from "primevue/tooltip";
 
 import { StickyNote } from "lucide-vue-next";
 import { LayoutDashboard } from "lucide-vue-next";
@@ -18,6 +19,20 @@ import { LifeBuoy } from "lucide-vue-next";
 import { Gem } from "lucide-vue-next";
 import { GitPullRequestCreateArrow } from "lucide-vue-next";
 import { CalendarCheck } from "lucide-vue-next";
+import { Ticket } from "lucide-vue-next";
+import { GalleryThumbnails } from "lucide-vue-next";
+import { Store } from "lucide-vue-next";
+import { Settings2 } from "lucide-vue-next";
+import { BadgeCheck } from "lucide-vue-next";
+import { ClipboardList } from "lucide-vue-next";
+import { AlarmClockMinus } from "lucide-vue-next";
+import { ChevronDown } from "lucide-vue-next";
+import { Bell } from "lucide-vue-next";
+import { ShipWheel } from "lucide-vue-next";
+import { Sailboat } from "lucide-vue-next";
+import { Ghost } from "lucide-vue-next";
+import { Gauge } from "lucide-vue-next";
+import { LibraryBig } from "lucide-vue-next";
 
 defineProps({
     title: String,
@@ -46,58 +61,122 @@ const logout = () => {
 <template>
     <div class="flex flex-row flex-nowrap">
         <div
-            class="min-w-[65px] flex flex-col items-center py-2 px-[5px] bg-[]"
+            class="fixed backdrop-blur sidebar-menu min-w-[55px] w-[55px] transition-all flex flex-col items-center pt-2 bg-[#F1ECE6]x shadow-lg h-screen"
         >
+            <img src="../../images/logo.png" class="pl-2 pr-1 pt-3 pb-4" />
+            <!-- <p class="logo-font text-[35px] pb-2 text-[#545454]">
+                g<span class="logo-font text-[40px] pb-4 hidden">alleon</span>
+            </p> -->
+            <!-- <Sailboat color="#27272A" strokeWidth="1.5" size="22" size="40" class="mb-3"/> -->
+
             <NavLink
+                v-tooltip="'Dashboard'"
                 class="py-4"
                 :href="route('dashboard')"
                 :active="route().current('dashboard')"
             >
-                <LayoutDashboard color="#44403c"
+                <Gauge color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
             <NavLink
+                v-tooltip="'Tickets'"
                 class="py-4"
                 :href="route('tickets.index')"
                 :active="route().current('tickets.index')"
-                ><StickyNote color="#44403c"
+                ><Ticket color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><Laptop color="#44403c"
+            <NavLink
+                v-tooltip="'Assets'"
+                :href="route('assets.index')"
+                :active="route().current('assets.index')"
+                class="py-4"
+                ><ClipboardList color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><Building color="#44403c"
+            <NavLink
+                v-tooltip="'Companies'"
+                :href="route('companies.index')"
+                :active="route().current('companies.index')"
+                class="py-4"
+                ><Store color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><Users color="#44403c"
+            <NavLink
+                v-tooltip="'People'"
+                :href="route('people.index')"
+                :active="route().current('people.index')"
+                class="py-4"
+                ><Users color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><CalendarCheck color="#44403c"
+            <NavLink
+                v-tooltip="'Alerts'"
+                :href="route('alerts.index')"
+                :active="route().current('alerts.index')"
+                class="py-4"
+                ><AlarmClockMinus color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <div class="h-[1px] w-3/4 my-2 bg-[#b3bcb6]"></div>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><Settings color="#44403c"
+            <NavLink
+                v-tooltip="'Library'"
+                :href="route('library.index')"
+                :active="route().current('library.index')"
+                class="py-4"
+                ><LibraryBig color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><Gem color="#44403c"
+
+            <div class="h-[1px] w-3/4 my-2 bg-[#cfcfcf]"></div>
+
+            <NavLink
+                v-tooltip="'Settings'"
+                :href="route('settings.index')"
+                :active="route().current('settings.index')"
+                class="py-4"
+                ><Settings2 color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <div class="h-[1px] w-3/4 my-2 bg-[#b3bcb6]"></div>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><LifeBuoy color="#44403c"
+            <NavLink
+                v-tooltip="'Membership'"
+                :href="route('membership.index')"
+                :active="route().current('membership.index')"
+                class="py-4"
+                ><BadgeCheck color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
-            <NavLink :href="route('dashboard')" class="py-4"
-                ><GitPullRequestCreateArrow color="#44403c"
+
+            <NavLink
+                v-tooltip="'Support'"
+                :href="route('support.index')"
+                :active="route().current('support.index')"
+                class="py-4"
+                ><LifeBuoy color="#27272A" strokeWidth="1.5" size="22"
             /></NavLink>
+            <NavLink
+                v-tooltip="'Feature Request'"
+                :href="route('roadmap.index')"
+                :active="route().current('roadmap.index')"
+                class="py-4"
+                ><GitPullRequestCreateArrow
+                    color="#27272A"
+                    strokeWidth="1.5"
+                    size="22"
+            /></NavLink>
+
+            <div
+                v-tooltip="'Boo!'"
+                class="group mt-auto w-full h-12 flex items-center justify-center self-end"
+            >
+                <Ghost
+                    class="-mb-20 group-hover:mb-0 transition-all duration-300"
+                    color="#27272A"
+                    strokeWidth="1.5"
+                    size="28"
+                />
+            </div>
         </div>
 
-        <div class="grow">
+        <div class="grow pl-16">
             <Head :title="title" />
 
             <Banner />
 
-            <div class="min-h-screen bg-slate-100">
-                <nav class="">
+            <div class="min-h-screen">
+                <nav class="right-1 top-0 py-4 fixed z-[2]">
                     <!-- Primary Navigation Menu -->
-                    <div class="mx-auto px-8 pt-1">
+                    <div class="mx-auto px-4 pt-1">
                         <div class="flex justify-between h-16">
                             <div class="flex">
                                 <!-- Logo -->
@@ -106,12 +185,13 @@ const logout = () => {
                                     <ApplicationMark class="block h-9 w-auto" />
                                 </Link>
                             </div> -->
-                                <span class="text-slate-800 my-auto"
+                                <!-- <span class="text-slate-800 my-auto"
                                     ><span class="logo-font text-[26px]"
                                         >galleon</span
-                                    ><span class="text-[22px]">•</span
+                                    >
+                                    <span class="text-[22px]">•</span
                                     ><span class="text-[22px]">desk</span></span
-                                >
+                                > -->
 
                                 <!-- Navigation Links -->
                                 <!-- <div
@@ -147,49 +227,29 @@ const logout = () => {
                                                             .current_team
                                                     "
                                                     type="button"
-                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150"
+                                                    class="px-4 border shadow-sm hover:shadow-md transition-all flex items-center gap-1 py-2 text-black h-[34px]"
                                                 >
                                                     {{
                                                         $page.props.auth.user
                                                             .current_team.name
                                                     }}
 
-                                                    <svg
-                                                        class="ms-2 -me-0.5 h-4 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke-width="1.5"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                                                        />
-                                                    </svg>
+                                                    <ChevronDown
+                                                        color="#27272A"
+                                                        size="15"
+                                                    />
                                                 </button>
                                                 <button
                                                     v-else
                                                     type="button"
-                                                    class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150"
+                                                    class="px-4 border shadow-sm hover:shadow-md transition-all flex items-center gap-1 py-2 text-black h-[34px]"
                                                 >
                                                     Create a team
 
-                                                    <svg
-                                                        class="ms-2 -me-0.5 h-4 w-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none"
-                                                        viewBox="0 0 24 24"
-                                                        stroke-width="1.5"
-                                                        stroke="currentColor"
-                                                    >
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            d="M8.25 15L12 18.75 15.75 15m-7.5-6L12 5.25 15.75 9"
-                                                        />
-                                                    </svg>
+                                                    <ChevronDown
+                                                        color="#27272A"
+                                                        size="18"
+                                                    />
                                                 </button>
                                             </span>
                                         </template>
@@ -320,7 +380,7 @@ const logout = () => {
                                                     $page.props.jetstream
                                                         .managesProfilePhotos
                                                 "
-                                                class="flex text-sm border-2 border-transparent rounded-full focus:outline-none border-slate-300 hover:border-slate-400 focus:border-slate-500 transition"
+                                                class="flex text-sm rounded-full focus:outline-none transition hover:shadow-lg focus:shadow-lg"
                                             >
                                                 <img
                                                     class="h-8 w-8 rounded-full object-cover"
@@ -405,6 +465,14 @@ const logout = () => {
                                         </template>
                                     </Dropdown>
                                 </div>
+
+                                <!-- Notification -->
+                                <!-- <button
+                                    type="button"
+                                    class="ms-3 inline-flex items-center gap-2 border border-transparent font-bold focus:outline-none transition ease-in-out duration-150 bg-zinc-800 hover:shadow-lg rounded-full text-white py-2 px-4 text-sm"
+                                >
+                                    <Bell color="#fff" size="15" />
+                                </button> -->
                             </div>
 
                             <!-- Hamburger -->
@@ -526,8 +594,6 @@ const logout = () => {
                                     </ResponsiveNavLink>
                                 </form>
 
-                                <p>heya</p>
-
                                 <!-- Team Management -->
                                 <template
                                     v-if="$page.props.jetstream.hasTeamFeatures"
@@ -597,5 +663,16 @@ const logout = () => {
                 </main>
             </div>
         </div>
+    </div>
+
+    <div
+        class="fixed bottom-0 right-0 text-sm bg-zinc-700 z-10 flex flex-row gap-4 px-6 rounded-tl-md"
+    >
+        <a href="/" class="text-zinc-300 hover:text-white">Galleon</a>
+        <a href="/" class="text-zinc-300 hover:text-white">About</a>
+        <a href="/" class="text-zinc-300 hover:text-white">Terms</a>
+        <a href="/" class="text-zinc-300 hover:text-white">Privacy</a>
+        <a href="/" class="text-zinc-300 hover:text-white">Contact</a>
+        <a href="/" class="text-zinc-300 hover:text-white">Community</a>
     </div>
 </template>

@@ -21,13 +21,20 @@ input {
     }
 }
 
-
 @import "./tabs-component.scss";
 @import "./inputs.scss";
+@import "./tooltips.scss";
+@import "./buttons.scss";
+@import "./tooltip.scss";
+@import "./tiptap-editor.scss";
 
 @font-face {
     font-family: manrope;
     src: url(../fonts/manrope.ttf);
+}
+@font-face {
+    font-family: notosans;
+    src: url(../fonts/notosans.ttf);
 }
 @font-face {
     font-family: "sugarmagic";
@@ -36,12 +43,11 @@ input {
     font-style: normal;
 }
 
-
 [x-cloak] {
     display: none;
 }
 
-html {
+html:not(.sidebar-menu) {
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -49,9 +55,38 @@ html {
 
 * {
     font-family: "manrope";
+    //font-family: notosans;
     color: #363636;
-    font-size: 14px;
-    
+    font-size: 13px;
+}
+
+h1 {
+    font-size: 44px;
+    line-height: 160%;
+}
+h2 {
+    font-size: 40px;
+    line-height: 160%;
+}
+h3 {
+    font-size: 36px;
+    line-height: 160%;
+}
+h4 {
+    font-size: 24px;
+    line-height: 160%;
+}
+h5 {
+    font-size: 20px;
+    line-height: 160%;
+}
+h6 {
+    font-size: 18px;
+    line-height: 160%;
+}
+p {
+    font-size: 13px;
+    line-height: 120%;
 }
 
 .logo-font {

@@ -142,11 +142,11 @@ const onEnd = (e) => {
                 >
                     <div
                         :data-id="element.id"
-                        class="galleon-column col-handle cursor-grab p-3 border-b-4 w-full flex items-center justify-between gap-3"
+                        class="galleon-column rounded-t-lg col-handle cursor-grab p-3 px-4 font-semibold border-b-4 w-full flex items-center justify-between gap-3"
                         :class="'bg-' + element.colour + '-200' + ' ' + 'border-' + element.colour + '-300' + ' ' + 'hover:border-' + element.colour + '-400' + ' ' + 'hover:bg-' + element.colour + '-300'"
                     >
                         <div class="flex items-center gap-2">
-                            <Move class="w-4 h-4" color="#1E293B" />
+                            <!-- <Move class="w-4 h-4" color="#1E293B" /> -->
                             {{ element.columnname }}
                         </div>
                         <div
@@ -168,9 +168,9 @@ const onEnd = (e) => {
         </Sortable>
         <div
             @click="startCreatingColumn"
-            class="ml-2 transition-all transition-300 cursor-pointer p-3 bg-stone-200 hover:bg-stone-300 hover:border-stone-500 border-b-4 border-stone-300 h-[46px] aspect-square my-1 flex items-center justify-center"
-        >
-            <Plus class="w-4 h-4 my-auto mx-auto" color="#1E293B" />
+            class="font-semibold rounded-t-lg ml-3 transition-all transition-300 cursor-pointer p-3 bg-zinc-200 hover:bg-zinc-300 hover:border-zinc-500 border-b-4 border-zinc-300 h-[43px] aspect-square my-1 flex items-center justify-center"
+        > <span class="text-xl">+</span>
+            <!-- <Plus class="w-4 h-4 my-auto mx-auto" color="#1E293B" /> -->
         </div>
     </div>
 

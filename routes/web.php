@@ -11,6 +11,24 @@ use App\Http\Controllers\TicketOrdersController;
 use App\Http\Controllers\TicketColumnsController;
 use App\Http\Controllers\TicketColumnsOrdersController;
 
+use App\Http\Controllers\AssetsController;
+
+use App\Http\Controllers\CompaniesController;
+
+use App\Http\Controllers\PeopleController;
+
+use App\Http\Controllers\AlertsController;
+
+use App\Http\Controllers\LibraryController;
+
+use App\Http\Controllers\SettingsController;
+
+use App\Http\Controllers\MembershipController;
+
+use App\Http\Controllers\SupportController;
+
+use App\Http\Controllers\RoadmapController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -41,13 +59,30 @@ Route::middleware([
     // })->name('dashboard');
     Route::resource('user', UserController::class);
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::resource('ticketboards', TicketBoardsController::class);
     Route::resource('ticketcolumns', TicketColumnsController::class);
     Route::resource('tickets', TicketsController::class);
     Route::resource('ticketorders', TicketOrdersController::class);
     Route::resource('ticketcolumnsorders', TicketColumnsOrdersController::class);
 
+    Route::resource('assets', AssetsController::class);
 
+    Route::resource('companies', CompaniesController::class);
+
+    Route::resource('people', PeopleController::class);
+
+    Route::resource('alerts', AlertsController::class);
+
+    Route::resource('library', LibraryController::class);
+
+    Route::resource('settings', SettingsController::class);
+
+    Route::resource('membership', MembershipController::class);
+
+    Route::resource('support', SupportController::class);
+
+    Route::resource('roadmap', RoadmapController::class);
 });
 
 

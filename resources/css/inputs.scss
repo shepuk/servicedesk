@@ -1,39 +1,49 @@
-input,
-textarea {
-    padding: 10px 10px !important;
-    outline: none !important;
-    margin-bottom: 16px;
-    border: 1px solid #8c8c8c !important;
-    transition: all 0.3s;
+// input,
+// textarea {
+//     padding: 10px 10px !important;
+//     outline: none !important;
+//     margin-bottom: 16px;
+//     border: 1px solid #8c8c8c !important;
+//     transition: all 0.3s;
 
-    &:focus:not([type="radio"]) {
-        -webkit-box-shadow: 0px 4px 0px 0px black !important;
-        -moz-box-shadow: 0px 4px 0px 0px black !important;
-        box-shadow: 0px 4px 0px 0px black !important;
-    }
-}
+//     &:focus:not([type="radio"]) {
+//         -webkit-box-shadow: 0px 4px 0px 0px black !important;
+//         -moz-box-shadow: 0px 4px 0px 0px black !important;
+//         box-shadow: 0px 4px 0px 0px black !important;
+//     }
+// }
 
-[type="radio"] {
-    display: block;
-    height: 12px;
-    width: 12px;
-}
+// [type="radio"] {
+//     display: block;
+//     height: 12px;
+//     width: 12px;
+// }
 
-[type="radio"] {
-    border: 1px solid #b0b0b0;
-    border-radius: 50%;
-    &:checked {
-        outline: 1px solid black!important;
-    }
-}
+// [type="radio"] {
+//     border: 1px solid #b0b0b0;
+//     border-radius: 50%;
+//     &:checked {
+//         outline: 1px solid black!important;
+//     }
+// }
 
-.new-ticket-radio {
-    &:focus {
-        outline: none !important;
-        -webkit-box-shadow: none !important;
-        -moz-box-shadow: none !important;
-        box-shadow: none !important;
-    }
+
+
+// .new-ticket-radio {
+//     &:focus {
+//         outline: none !important;
+//         -webkit-box-shadow: none !important;
+//         -moz-box-shadow: none !important;
+//         box-shadow: none !important;
+//     }
+// }
+
+input {
+    // padding: 10px 10px !important;
+    // outline: none !important;
+    // margin-bottom: 16px;
+    // border: 1px solid #c6c6c6 !important;
+    // transition: all 0.3s;
 }
 
 #low {
@@ -54,4 +64,8 @@ textarea {
 #critical {
     color: #ef4444;
     accent-color: #ef4444;
+}
+
+textarea:focus-visible {
+    outline: none;
 }

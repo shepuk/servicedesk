@@ -1,0 +1,88 @@
+// .p-datatable {
+//     z-index: -1;
+// }
+
+.tiptap {
+    outline: none !important;
+}
+
+.tiptap-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.tiptap-buttons button {
+    border: 1px solid #8c8c8c;
+    padding: 5px 10px;
+    transition: all 0.3s;
+    cursor: pointer;
+    background-color: white;
+    &:hover {
+        background-color: #f5f5f5;
+    }
+}
+
+.tiptap code {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 600;
+    color: #f5f5f5;
+    background-color: #323232;
+    padding: 10px 24px;
+    display: block;
+    width: 100%;
+    //border-radius: 4px;
+}
+
+.ProseMirror > * + * {
+    //margin-top: 0.75em;
+}
+
+.ProseMirror ol {
+    padding: 0 1rem;
+    list-style: decimal !important;
+}
+
+.ProseMirror ul {
+    padding: 0 1rem;
+    list-style: disc !important;
+}
+
+//Display a Placeholder only for the first line in an empty editor.
+.tiptap p.is-editor-empty:first-child::before {
+    color: #999999;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}
+
+.tiptap:has(.tiptap-has-focus) {
+    .tiptap-editor-container {
+        //border: 1px solid blue!important;
+    }
+}
+
+.tiptap-buttons {
+    height: 0px;
+    overflow: hidden;
+    transition: height 0.3s;
+    transition-delay: 150ms;
+    transition-property: height;
+}
+
+.tiptap-editor-container:has(div.ProseMirror-focused) {
+    border-bottom: 1px solid #10b981;
+
+    &.tiptap-buttons {
+        height: 100px;
+        background-color: #10b981;
+        overflow: visible;
+    }
+}
+
+form:has(div.ProseMirror-focused) .tiptap-buttons {
+    height: 100px;
+    //overflow: visible;
+}

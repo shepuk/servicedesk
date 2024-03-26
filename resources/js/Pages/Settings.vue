@@ -1,7 +1,6 @@
 <script setup>
-import AppLayout from "@/Layouts/AppLayout.vue";
-import Welcome from "@/Components/Welcome.vue";
 import { ref, onMounted } from "vue";
+import AppLayout from "@/Layouts/AppLayout.vue";
 import { Tabs, Tab } from "vue3-tabs-component";
 import { usePage } from "@inertiajs/vue3";
 import { router, useForm } from "@inertiajs/vue3";
@@ -23,7 +22,7 @@ import { MoreVertical } from "lucide-vue-next";
 import { Captions } from "lucide-vue-next";
 import { Plus } from "lucide-vue-next";
 import { Settings2 } from "lucide-vue-next";
-import { Eye } from "lucide-vue-next";
+
 </script>
 
 <template>
@@ -37,7 +36,7 @@ import { Eye } from "lucide-vue-next";
         <div class="flex flex-row items-center gap-4 -ml-[23px] pl-8 py-8 mb-4 w-full fixed backdrop-blur">
             <div class="flex flex-col">
                 <h1 class="text-[30px] font-bold text-zinc-800 leading-none">
-                    Dashboard
+                    Settings
                 </h1>
                 <div>
                     <!-- <div class="flex items-center text-sm text-zinc-800">
@@ -49,9 +48,35 @@ import { Eye } from "lucide-vue-next";
                 class="flex flex-row gap-2 px-4 border shadow-sm hover:shadow-md transition-all [&>button]:p-2 [&>button]:h-full"
             >
 
-            <button v-tooltip.bottom="'Views'" class="">
-                    <Eye color="#27272A" strokeWidth="2" size="18" />
-                </button>
+                <Dropdown
+                    v-tooltip.bottom="'Create'"
+                    align="left"
+                    width="60"
+                    class=""
+                >
+                    <template #trigger>
+                        <button class="py-2">
+                            <Plus color="#27272A" strokeWidth="2" size="18" />
+                        </button>
+                    </template>
+                    <template #content>
+                        <div class="w-60">
+                            <DropdownLink
+                                href="/">
+                                Ticket
+                            </DropdownLink>
+                            <DropdownLink
+                                href="/">
+                                Column
+                            </DropdownLink>
+                            <DropdownLink
+                                href="/">
+                                Board
+                            </DropdownLink>
+                        </div>
+                    </template>
+                </Dropdown>
+
                 <button v-tooltip.bottom="'Preferences'" class="">
                     <Settings2 color="#27272A" strokeWidth="2" size="18" />
                 </button>
@@ -63,21 +88,3 @@ import { Eye } from "lucide-vue-next";
      <h1 class="pt-28">Content!</h1>
     </AppLayout>
 </template>
-
-<!-- <template>
-    <AppLayout title="Dashboard">
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
-
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                    <Welcome />
-                </div>
-            </div>
-        </div>
-    </AppLayout>
-</template> -->
